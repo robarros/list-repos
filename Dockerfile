@@ -16,8 +16,9 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Porta em que o Flask vai rodar
-EXPOSE 8080
+EXPOSE 9090
 
 # Comando para executar o Flask
-CMD ["python", "total.py"]
+CMD ["python", "app.py"]
 
+# docker run -d -p 9090:9090 --env-file .env app-api
