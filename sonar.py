@@ -5,15 +5,14 @@ app = Flask(__name__)
 
 # Configurações do SonarQube
 SONARQUBE_URL = "http://seu-sonarqube-url"
-SONARQUBE_USERNAME = "seu-usuario-aqui"
-SONARQUBE_PASSWORD = "sua-senha-aqui"
+SONARQUBE_API_TOKEN = "seu-token-aqui"
 
 @app.route('/projects', methods=['GET'])
 def list_projects():
     try:
         response = requests.get(
             f"{SONARQUBE_URL}/api/projects/search",
-            auth=(SONARQUBE_USERNAME, SONARQUBE_PASSWORD),
+            auth=(SONARQUBE_API_TOKEN, ''),
             verify=False
         )
         response.raise_for_status()  # Verifica se a requisição teve sucesso
@@ -23,4 +22,4 @@ def list_projects():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=9090)
