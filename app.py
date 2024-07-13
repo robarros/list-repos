@@ -150,6 +150,7 @@ def total_pipelines():
     except Exception as e:
         return jsonify({'error': f"Erro ao buscar total de pipelines do Jenkins: {e}"}), 500
 
+# Rota para obter a lista de projetos do SONARQUBE
 def get_coverage(project_key):
     url = f"{SONARQUBE_URL}/api/measures/component"
     params = {
@@ -188,6 +189,7 @@ def listar_projetos():
     else:
         return jsonify({"erro": "Não foi possível acessar o SonarQube"}), response.status_code
 
+# Rota para obter a lista o total de projetos do SONARQUBE
 @app.route('/sonarqube/total', methods=['GET'])
 def contar_projetos():
     url = f"{SONARQUBE_URL}/api/projects/search"
